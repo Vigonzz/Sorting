@@ -64,6 +64,20 @@ def sortString(string, algorithm = "merge"):
         raise ValueError("Algorithm chosen not recgonized. Choose between quicksort or merge")
     return "".join(sorted_chars)
 
+def groupAnagram(strings, algorithm="merge"):
+    """ Group words that are anagrams together """
+    groups = {}
+
+    for word in strings:
+        key = sortString(word, algorithm)
+
+        if key not in groups:
+            groups[key] = []
+        groups[key].append(word)
+    
+    # Return the groups
+    return list(groups.values())
+
 
 # Testing helper function
 print("\n-------Normal Merge------")
@@ -115,7 +129,11 @@ print(sortString("ogtan"))
 print("\n-----TEST 5-----")
 print(sortString(""))
 
+# Testing grouping the anagrams
+print("\n\n-----Testing Grouping-----")
 
+print("\n-----Assignment Example-----")
+print(groupAnagram(["bucket", "rat", "mango", "tango", "ogtan", "tar"]))
 
 
 
