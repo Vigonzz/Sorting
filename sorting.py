@@ -78,6 +78,34 @@ def groupAnagram(strings, algorithm="merge"):
     # Return the groups
     return list(groups.values())
 
+def quicksort(char_list):
+    """ """
+    if len(char_list) <= 1:
+        return char_list
+    
+    mid = len(char_list) // 2
+    pivot = char_list[mid]
+
+    # the partition 
+    less = []
+    equal = []
+    greater = []
+
+    for char in char_list:
+        if char < pivot:
+            less.append(char)
+        elif char == pivot:
+            equal.append(char)
+        else:
+            greater.append(char)
+    
+    # Recurse
+    sorted_less = quicksort(less)
+    sorted_greater = quicksort(greater)
+
+    # Combine the list
+    combine = sorted_less + equal + sorted_greater
+    return combine
 
 # Testing helper function
 print("\n-------Normal Merge------")
@@ -135,6 +163,44 @@ print("\n\n-----Testing Grouping-----")
 print("\n-----Assignment Example-----")
 print(groupAnagram(["bucket", "rat", "mango", "tango", "ogtan", "tar"]))
 
+# Testing quicksort
+print("\n\n-----Testing quicksort-----")
+print("\n-----TEST 1-----")
+test = quicksort(list("mango"))
+print(test)
+
+print("\n-----TEST 2-----")
+print(quicksort(list("bucket")))
+
+print("\n-----TEST 3-----")
+print(quicksort(list([])))
+
+print("\n-----TEST 4-----")
+print(quicksort(list(['z'])))
+
+print("\n-----TEST 5-----")
+print(quicksort(list(list("aabba"))))
+
+# Testing sort string with quicksort
+print("\n\n----- Testing Sorting(quicksort)-----")
+
+print("\n-----TEST 1-----")
+print(sortString("mango", "quicksort"))
+
+print("\n-----TEST 2-----")
+print(sortString("ogman", "quicksort"))
+
+print("\n-----TEST 3-----")
+print(sortString("tango","quicksort"))
+
+print("\n-----TEST 4-----")
+print(sortString("ogtan","quicksort"))
+
+print("\n-----TEST 5-----")
+print(sortString("","quicksort"))
 
 
+print("\n\n-----Testing Grouping(quicksort)-----")
 
+print("\n-----Assignment Example-----")
+print(groupAnagram(["bucket", "rat", "mango", "tango", "ogtan", "tar"], "quicksort"))
